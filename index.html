@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Fake News Detection System</title>
+ 
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+ <div class="login">
+	<h2>Enter the News To Detact it's Fake or Not!!</h2>
+
+    <form action="{{ url_for('predict')}}" method="POST">
+    	<textarea  name="message" rows="6" cols="50" required="required" style="font-size: 15pt"></textarea>
+		<br> </br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Verify</button>
+
+        	<div class="results">
+
+	{% if prediction == ['FAKE']%}
+	<h2 style="color:red;">Look Like Spam News </h2>
+	{% elif prediction == ['REAL']%}
+				<h2 style="color:green;"><b>Look Like Real News</b></h2>
+	{% endif %}
+
+	</div>
+
+    </form>
+
+</div>
